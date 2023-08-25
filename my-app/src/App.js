@@ -2,14 +2,13 @@ import './App.css';
 import Header from './Components/Header/Header'
 import Navbar from './Components/Navbar/Navbar'
 import Profile from './Components/Profile/Profile'
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import Dialogs from "./Components/Dialogs/Dialogs";
 import OffersFollow from "./Components/OffersFollow/OffersFollow";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 const App = (props) => {
     return (
-        <BrowserRouter>
             <div className='app'>
                 <Header/>
                 <Navbar/>
@@ -19,7 +18,6 @@ const App = (props) => {
                         <Route path='/dialogs' element={<DialogsContainer store={props.store} />}/>
                     </Routes>
             </div>
-        </BrowserRouter>
     );
 }
 

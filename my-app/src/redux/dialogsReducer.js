@@ -19,13 +19,20 @@ let initState = {
 
 let dialogsReducer = (state = initState, active) => {
     if (active.type === UPDATE_NEW_MESSAGE_BODY) {
-        state.newMessageText = active.body;
+        let stateCopy = {...state};
+        stateCopy.newMessageText = active.body;
+        return stateCopy;
     } else if (active.type === SEND_MESSAGE){
+        let stateCopy = {...state};
+        stateCopy.messageData = {...state.messageData};
         let newMessage = {
-            name: "NICKNAME", message: state.newMessageText, id: 115
+            name: "NICKNAME", message: stateCopy.newMessageText, id: 115
         }
-        state.messageData.push(newMessage);
-        state.newMessageText = '';
+        console.log(stateCopy.messageData);
+        console.log(state.messageData);
+        stateCopy.messageData.push(newMessage);
+        stateCopy.newMessageText = '';
+        return stateCopy;
     }
     return state;
 }
