@@ -10,13 +10,18 @@ let initState = {
 
 let profileReducer = (state = initState, active) => {
     if (active.type === ADD_POST) {
+        let stateCopy = {...state};
         let newPost = {
-            name: "NICKNAME", postMessage: state.newPostText, like: 0
+            name: "NICKNAME", postMessage: stateCopy.newPostText, like: 0
         }
-        state.posts.push(newPost);
-        state.newPostText = '';
+        stateCopy.posts = [...state.posts]
+        stateCopy.posts.push(newPost);
+        stateCopy.newPostText = '';
+        return stateCopy;
     } else if (active.type === NEW_POST_TEXT) {
-        state.newPostText = active.newText;
+        let stateCopy = {...state};
+        stateCopy.newPostText = active.newText;
+        return stateCopy;
     }
     return state;
 }

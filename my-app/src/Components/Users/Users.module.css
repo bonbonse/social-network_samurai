@@ -1,0 +1,37 @@
+.user {
+    display: grid;
+    margin-left: 50px;
+    margin-right: 50px;
+    grid-template-columns: 25% 75%;
+
+    grid-gap: 10px;
+
+    grid-template-areas:
+    "ava description";
+}
+.description {
+    grid-area: description;
+    /*display: grid;
+    grid-template-areas:
+    "surname country"
+    "description city";
+    grid-gap: 30px;
+*/
+    border: solid #6d6e71;
+    border-radius: 10px;
+    padding: 10px;
+}
+.ava {
+    grid-area: ava;
+    border: solid #6d6e71;
+    border-radius: 10px;
+    padding: 10px;
+}
+.ava img {/*
+    width: 30%;*/
+}
+.ava button {
+/*
+background-color: #253b3b;
+color: white; */
+}

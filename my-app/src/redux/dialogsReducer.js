@@ -24,12 +24,10 @@ let dialogsReducer = (state = initState, active) => {
         return stateCopy;
     } else if (active.type === SEND_MESSAGE){
         let stateCopy = {...state};
-        stateCopy.messageData = {...state.messageData};
+        stateCopy.messageData = [...state.messageData];
         let newMessage = {
             name: "NICKNAME", message: stateCopy.newMessageText, id: 115
         }
-        console.log(stateCopy.messageData);
-        console.log(state.messageData);
         stateCopy.messageData.push(newMessage);
         stateCopy.newMessageText = '';
         return stateCopy;

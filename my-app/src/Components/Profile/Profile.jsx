@@ -2,7 +2,7 @@ import s from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
 import {changeTextareaText} from "../../state";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-const Profile = (props) => {
+const Profile = () => {
     return (
         <div className='content'>
             <div className={s.imageBlock}>
@@ -13,7 +13,7 @@ const Profile = (props) => {
                 </div>
 
             </div>
-            <MyPostsContainer store={props.store} />
+            <MyPostsContainer  />
         </div>
     );
 }

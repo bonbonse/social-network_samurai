@@ -13,6 +13,9 @@ const Navbar = () => {
                 <NavLink to='/dialogs' className={isActive}>Dialogs</NavLink>
             </div>
             <div className={s.item}>
+                <NavLink to='/users' className={isActive}>Users</NavLink>
+            </div>
+            <div className={s.item}>
                 <a>Friends</a>
             </div>
             <div className={s.item}>
