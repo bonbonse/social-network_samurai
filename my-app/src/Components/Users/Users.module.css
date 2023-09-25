@@ -35,3 +35,6 @@
 background-color: #253b3b;
 color: white; */
 }
+.activePage {
+    font-weight: bold;
+}

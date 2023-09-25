@@ -1,7 +1,7 @@
 import s from './User.module.css'
+const defaultAva = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGlCKG7p8FCEus4Ftg7q-YCBU5z1PykDrzfYvnr6YbRg&s"
 
 const User = (props) => {
-    let ava = props.user.ava;
 
     let follow = (userId) => {
         props.follow(userId)
@@ -17,16 +17,12 @@ const User = (props) => {
     return (
         <div className={s.user}>
             <div className={s.ava}>
-                <div><img
-                    src={ava}/>
-                </div>
-                {followed}
+                <img src={defaultAva} />
+                    {followed}
             </div>
             <div className={s.userInfo}>
-                <div className={s.fullname}>{props.user.surname} {props.user.name}</div>
-                <div className={s.description}>{props.user.description}</div>
-                <div className={s.country}>{props.user.country}</div>
-                <div className={s.city}>{props.user.city}</div>
+                <div>{props.user.name}</div>
+                <div>{props.user.status}</div>
             </div>
         </div>
     )
