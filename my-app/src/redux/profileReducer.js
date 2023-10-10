@@ -1,29 +1,40 @@
+import {usersAPI} from "../api/requestApi";
+
 let ADD_POST = 'ADD-POST';
 let NEW_POST_TEXT = 'NEW-POST-TEXT';
+let SET_USER_PROFILE = 'SET-USER-PROFILE';
 
 let initState = {
     newPostText: "",
-    posts: [{name: "NICKNAME", postMessage: "text Post", like: 1},
-        {name: "NICKNAME", postMessage: "Hello", like: 1},
-        {name: "Anonim", postMessage: "TEtefe", like: 3},]
+    posts: [],
+    profile: null
 };
 
-let profileReducer = (state = initState, active) => {
-    if (active.type === ADD_POST) {
-        let stateCopy = {...state};
-        let newPost = {
-            name: "NICKNAME", postMessage: stateCopy.newPostText, like: 0
+let profileReducer = (state = initState, action) => {
+    switch (action.type) {
+        case ADD_POST: {
+            let stateCopy = {...state};
+            let newPost = {
+                name: "NICKNAME", postMessage: stateCopy.newPostText, like: 0
+            }
+            stateCopy.posts = [...state.posts]
+            stateCopy.posts.push(newPost);
+            stateCopy.newPostText = '';
+            return stateCopy;
         }
-        stateCopy.posts = [...state.posts]
-        stateCopy.posts.push(newPost);
-        stateCopy.newPostText = '';
-        return stateCopy;
-    } else if (active.type === NEW_POST_TEXT) {
-        let stateCopy = {...state};
-        stateCopy.newPostText = active.newText;
-        return stateCopy;
+        case NEW_POST_TEXT: {
+            let stateCopy = {...state};
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
+        }
+        case SET_USER_PROFILE: {
+            let stateCopy = {...state}
+            stateCopy.profile = {...action.userProfile};
+            return stateCopy;
+        }
+        default:
+            return state;
     }
-    return state;
 }
 
 
@@ -33,6 +44,16 @@ export let addPostActionCreator = () => {
 export let newPostTextActionCreator = (text) => {
     return {type: NEW_POST_TEXT, newText: text}
 }
+export let setUserProfile = (userProfile) => {
+    return {type: SET_USER_PROFILE, userProfile}
+}
+export const getProfile = (userId) => {
+    return (dispatch) => {
+        usersAPI.getProfile(userId)
+            .then(data => dispatch(setUserProfile(data)))
+    }
+}
+
 
 
 export default profileReducer;

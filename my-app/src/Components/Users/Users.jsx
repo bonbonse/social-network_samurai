@@ -4,6 +4,7 @@ import User from "./User/User";
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pagesSize);
     let pages = [];
+
     for (let i = 1; i <= pagesCount; i++){
         pages.push(i)
     }
@@ -19,7 +20,10 @@ let Users = (props) => {
         </div>
         {props.users.map((item) =>
             <div key={item.id}>
-                <User user={item} follow={props.follow} unfollow={props.unfollow}/>
+                <User user={item} followingIsProgress={props.followingIsProgress}
+                      toogleIsFollowingProgress={props.toogleIsFollowingProgress}
+                      follow={props.follow} unfollow={props.unfollow}
+                      unfollowThunk={props.unfollowThunk} followThunk={props.followThunk}/>
             </div>)
         }
         <button>button</button>

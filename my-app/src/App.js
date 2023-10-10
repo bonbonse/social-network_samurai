@@ -1,20 +1,20 @@
 import './App.css';
-import Header from './Components/Header/Header'
 import Navbar from './Components/Navbar/Navbar'
-import Profile from './Components/Profile/Profile'
 import {Route, Routes} from "react-router-dom";
 import OffersFollow from "./Components/OffersFollow/OffersFollow";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
+import ProfileContainer from "./Components/Profile/ProfileContainer";
+import HeaderContainer from "./Components/Header/HeaderContainer";
 
 const App = () => {
     return (
             <div className='app'>
-                <Header/>
+                <HeaderContainer />
                 <Navbar/>
                 <OffersFollow />
                     <Routes>
-                        <Route path='/profile' element={<Profile />}/>
+                        <Route path='/profile/:userId?' element={<ProfileContainer />}/>
                         <Route path='/dialogs' element={<DialogsContainer />}/>
                         <Route path='/users' element={<UsersContainer  />}/>
                     </Routes>
