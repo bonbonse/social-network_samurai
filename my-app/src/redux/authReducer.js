@@ -1,4 +1,4 @@
-import {usersAPI} from "../api/requestApi";
+import {authAPI} from "../api/requestApi";
 
 let AUTH_USER = 'AUTH_USER'
 
@@ -29,7 +29,7 @@ export let authUser = (userAuthInfo) => {
 }
 export const auth = () => {
     return (dispatch) => {
-        usersAPI.auth()
+        authAPI.me()
             .then(response => {
                     if (response.data.resultCode === 0)
                         dispatch(authUser(response.data.data))
