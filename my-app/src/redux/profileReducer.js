@@ -1,13 +1,15 @@
-import {usersAPI} from "../api/requestApi";
+import {profileAPI, usersAPI} from "../api/requestApi";
 
 let ADD_POST = 'ADD-POST';
 let NEW_POST_TEXT = 'NEW-POST-TEXT';
 let SET_USER_PROFILE = 'SET-USER-PROFILE';
+let GET_STATUS = 'GET_STATUS';
 
 let initState = {
     newPostText: "",
     posts: [],
-    profile: null
+    profile: null,
+    status: ""
 };
 
 let profileReducer = (state = initState, action) => {
@@ -28,9 +30,18 @@ let profileReducer = (state = initState, action) => {
             return stateCopy;
         }
         case SET_USER_PROFILE: {
-            let stateCopy = {...state}
+            let stateCopy = {
+                ...state,
+                ...state.photos
+            }
             stateCopy.profile = {...action.userProfile};
             return stateCopy;
+        }
+        case GET_STATUS: {
+            return {
+                ...state,
+                status: action.newStatus
+            }
         }
         default:
             return state;
@@ -47,10 +58,32 @@ export let newPostTextActionCreator = (text) => {
 export let setUserProfile = (userProfile) => {
     return {type: SET_USER_PROFILE, userProfile}
 }
+export let setStatus = (newStatus) => {
+    return {type: GET_STATUS, newStatus}
+}
+
+
 export const getProfile = (userId) => {
     return (dispatch) => {
         usersAPI.getProfile(userId)
             .then(data => dispatch(setUserProfile(data)))
+    }
+}
+export const getStatus = (userId) => {
+    return (dispatch) => {
+        profileAPI.getStatus(userId)
+            .then(data => {dispatch(setStatus(data))})
+    }
+}
+
+export const updateStatus = (newStatusBody) => {
+    return (dispatch) => {
+        profileAPI.putStatus(newStatusBody)
+            .then(response => {
+                debugger
+                dispatch(setStatus(newStatusBody));
+                response.resultCode === 0 && console.log("Status in state!")
+            })
     }
 }
 

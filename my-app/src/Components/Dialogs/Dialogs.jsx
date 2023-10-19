@@ -2,6 +2,8 @@ import s from './Dialogs.module.css'
 import DialogsItem from "./DialogsItem/DialogsItem";
 import Messages from "./Messages/Messages";
 import React from 'react'
+import {Navigate} from "react-router-dom";
+import authNavigate from "../../hoc/authNavigate";
 
 const Dialogs = (props) => {
     let dialogs = props.dialogsData.map((d) => <DialogsItem name={d.name} id={d.id}/>)
@@ -14,7 +16,6 @@ const Dialogs = (props) => {
         let body = event.target.value;
         props.newMessageBody(body);
     }
-
     return (
         <div className={s.dialogsWrapper}>
             <div className={s.dialogs}>
@@ -30,7 +31,6 @@ const Dialogs = (props) => {
             </div>
         </div>
     );
-
 }
 
 export default Dialogs;

@@ -10,13 +10,13 @@ class HeaderContainer extends React.Component {
     }
 
     render() {
-        return (<Header/>);
+        return (<Header isAuth={this.props.isAuth}/>);
     }
 }
 
 let mapStateToProps = (state) => {
     return {
-
+        isAuth: state.auth.isAuth
     }
 }
 
