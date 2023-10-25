@@ -24,7 +24,6 @@ let mapStateToProps = (state) => {
     return {
         age: 14,
         profile: state.profilePage.profile,
-        newPostText: state.profilePage.newPostText,
         posts: state.profilePage.posts,
         status: state.profilePage.status
     }

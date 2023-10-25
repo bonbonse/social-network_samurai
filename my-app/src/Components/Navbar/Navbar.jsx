@@ -1,9 +1,10 @@
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
+import {connect} from "react-redux";
 
-const Navbar = () => {
+const Navbar = (props) => {
     let isActive = ({isActive}) => isActive ? s.activeLink : undefined
-    let myProfileURL = `/profile/30092`;
+    let myProfileURL = `/profile/${props.userId}`;
     return (
         <nav className='nav'>
             <div className={s.item}>
@@ -27,4 +28,10 @@ const Navbar = () => {
         </nav>
     );
 }
-export default Navbar;
+
+let mapStateToProps = (state) => {
+    return {
+        userId: state.auth.id
+    }
+}
+export default connect(mapStateToProps, {})(Navbar);

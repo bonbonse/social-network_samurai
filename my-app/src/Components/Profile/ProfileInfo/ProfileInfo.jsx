@@ -1,5 +1,5 @@
 import s from './ProfileInfo.module.css'
-import Preloader from "../../Users/Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 let defaultAva = 'https://bipbap.ru/wp-content/uploads/2022/11/1652235714_41-kartinkin-net-p-prikolnie-kartinki-dlya-stima-44.jpg'
 
